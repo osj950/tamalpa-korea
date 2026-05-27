@@ -63,7 +63,7 @@ export default function TrainingApplyPage() {
   return (
     <>
       <Nav />
-      <main style={{ paddingTop: '137px' }}>
+      <main style={{ paddingTop: '88px' }}>
 
         {/* 페이지 헤더 */}
         <section style={{ background: 'var(--dark)', padding: '80px 60px' }}>

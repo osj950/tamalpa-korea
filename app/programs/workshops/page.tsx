@@ -15,7 +15,7 @@ export default async function WorkshopsPage() {
   return (
     <>
       <Nav />
-      <main style={{ paddingTop: '137px' }}>
+      <main style={{ paddingTop: '88px' }}>
         <section style={{ background: 'var(--dark)', padding: '80px 60px' }}>
           <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
             <div className="section-eyebrow" style={{ color: 'var(--gold-light)' }}>Education</div>
