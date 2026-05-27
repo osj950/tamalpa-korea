@@ -8,6 +8,7 @@ const NAV = [
   { href: '/admin/library', label: '자료실 관리' },
   { href: '/admin/news', label: '소식 관리' },
   { href: '/admin/workshops', label: '워크숍 관리' },
+  { href: '/admin/instructors', label: '강사 관리' },
   {
     href: '/admin/applications',
     label: '신청 목록',
@@ -143,6 +144,7 @@ export default function AdminSidebar() {
             { href: '/admin/library/new', label: '+ 자료실' },
             { href: '/admin/news/new', label: '+ 소식' },
             { href: '/admin/workshops/new', label: '+ 워크숍' },
+            { href: '/admin/instructors/new', label: '+ 강사' },
           ].map(link => (
             <a
               key={link.href}

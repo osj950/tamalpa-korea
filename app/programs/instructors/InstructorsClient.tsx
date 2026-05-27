@@ -1,22 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
+import type { Instructor } from '@/lib/admin-sheets'
 
-const usInstructors = [
-  { name: 'Daria Halprin', role: 'Founder · Director', desc: 'Tamalpa Institute 공동 창립자이자 디렉터. Anna Halprin의 딸로서 Life/Art Process를 전 세계에 전파하고 있습니다.' },
-  { name: 'Jamie McHugh', role: 'Senior Faculty', desc: '수십 년간 Tamalpa 방법론을 가르쳐 온 시니어 강사. 몸 기반 표현과 움직임 교육의 권위자입니다.' },
-  { name: '강사 이름', role: 'Tamalpa Practitioner', desc: '미국 본부 공인 Tamalpa 프랙티셔너로 워크숍과 트레이닝 프로그램을 진행합니다.' },
-]
-
-const koreaInstructors = [
-  { name: '강사 이름', role: 'Korea Director', desc: '한국타말파연구소를 이끌며 트레이닝 프로그램과 워크숍을 기획·진행합니다.' },
-  { name: '강사 이름', role: 'Tamalpa Practitioner', desc: '표현예술치료 분야의 전문가로 개인 및 그룹 세션을 진행합니다.' },
-  { name: '강사 이름', role: 'Tamalpa Practitioner', desc: '움직임과 시각 예술을 통합한 표현예술치료 워크숍을 이끌고 있습니다.' },
-]
-
-export default function InstructorsClient() {
+export default function InstructorsClient({ instructors }: { instructors: Instructor[] }) {
   const [activeTab, setActiveTab] = useState<'us' | 'korea'>('us')
-  const instructors = activeTab === 'us' ? usInstructors : koreaInstructors
+
+  const usInstructors = instructors.filter(i => i.group === 'us')
+  const koreaInstructors = instructors.filter(i => i.group === 'kr')
+  const list = activeTab === 'us' ? usInstructors : koreaInstructors
 
   return (
     <section className="instructors" style={{ padding: '80px 60px' }}>
@@ -37,9 +30,15 @@ export default function InstructorsClient() {
         </div>
 
         <div className="instructor-grid">
-          {instructors.map((instructor, idx) => (
-            <div className="instructor-card" key={idx}>
-              <div className="instructor-photo">🌿</div>
+          {list.map((instructor, idx) => (
+            <div className="instructor-card" key={instructor.id ?? idx}>
+              <div className="instructor-photo">
+                {instructor.photo ? (
+                  <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
+                    <Image src={instructor.photo} alt={instructor.name} fill style={{ objectFit: 'cover' }} />
+                  </div>
+                ) : '🌿'}
+              </div>
               <h4>{instructor.name}</h4>
               <p>{instructor.role}</p>
               <p style={{
@@ -52,7 +51,7 @@ export default function InstructorsClient() {
                 textTransform: 'none',
                 letterSpacing: 0,
               }}>
-                {instructor.desc}
+                {instructor.bio}
               </p>
             </div>
           ))}

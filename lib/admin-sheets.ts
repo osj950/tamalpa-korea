@@ -47,6 +47,15 @@ export type Workshop = {
   poster: string
 }
 
+export type Instructor = {
+  id: string
+  group: 'us' | 'kr'
+  name: string
+  photo: string
+  role: string
+  bio: string
+}
+
 const SEP = '|||'
 
 function checkSheetsConfig() {
@@ -391,6 +400,74 @@ export async function deleteWorkshop(id: string): Promise<void> {
   const idx = await findRowIndex('워크숍', id)
   if (idx === -1) throw new Error('Workshop not found')
   await deleteSheetRow('워크숍', idx)
+}
+
+// ── INSTRUCTORS ──
+
+const staticInstructors: Instructor[] = [
+  { id: 'ins1', group: 'us', name: 'Daria Halprin', photo: '', role: 'Founder · Director', bio: 'Tamalpa Institute 공동 창립자이자 디렉터. Anna Halprin의 딸로서 Life/Art Process를 전 세계에 전파하고 있습니다.' },
+  { id: 'ins2', group: 'us', name: 'Jamie McHugh', photo: '', role: 'Senior Faculty', bio: '수십 년간 Tamalpa 방법론을 가르쳐 온 시니어 강사. 몸 기반 표현과 움직임 교육의 권위자입니다.' },
+  { id: 'ins3', group: 'us', name: '강사 이름', photo: '', role: 'Tamalpa Practitioner', bio: '미국 본부 공인 Tamalpa 프랙티셔너로 워크숍과 트레이닝 프로그램을 진행합니다.' },
+  { id: 'ins4', group: 'kr', name: '강사 이름', photo: '', role: 'Korea Director', bio: '한국타말파연구소를 이끌며 트레이닝 프로그램과 워크숍을 기획·진행합니다.' },
+  { id: 'ins5', group: 'kr', name: '강사 이름', photo: '', role: 'Tamalpa Practitioner', bio: '표현예술치료 분야의 전문가로 개인 및 그룹 세션을 진행합니다.' },
+  { id: 'ins6', group: 'kr', name: '강사 이름', photo: '', role: 'Tamalpa Practitioner', bio: '움직임과 시각 예술을 통합한 표현예술치료 워크숍을 이끌고 있습니다.' },
+]
+
+function rowToInstructor(row: string[]): Instructor {
+  return {
+    id: row[0] ?? '',
+    group: (row[1] === 'kr' ? 'kr' : 'us') as 'us' | 'kr',
+    name: row[2] ?? '',
+    photo: row[3] ?? '',
+    role: row[4] ?? '',
+    bio: row[5] ?? '',
+  }
+}
+
+function instructorToRow(ins: Instructor): string[] {
+  return [ins.id, ins.group, ins.name, ins.photo, ins.role, ins.bio]
+}
+
+export async function getInstructors(): Promise<Instructor[]> {
+  try {
+    const rows = await getAllRows('강사')
+    if (rows.length === 0) {
+      for (const ins of staticInstructors) await appendToSheet('강사', instructorToRow(ins))
+      return staticInstructors
+    }
+    return rows.map(rowToInstructor)
+  } catch {
+    return staticInstructors
+  }
+}
+
+export async function getInstructorById(id: string): Promise<Instructor | null> {
+  try {
+    return (await getInstructors()).find(i => i.id === id) ?? null
+  } catch {
+    return staticInstructors.find(i => i.id === id) ?? null
+  }
+}
+
+export async function createInstructor(data: Omit<Instructor, 'id'>): Promise<Instructor> {
+  checkSheetsConfig()
+  const ins: Instructor = { id: genId(), ...data }
+  await appendToSheet('강사', instructorToRow(ins))
+  return ins
+}
+
+export async function updateInstructor(id: string, data: Omit<Instructor, 'id'>): Promise<void> {
+  checkSheetsConfig()
+  const idx = await findRowIndex('강사', id)
+  if (idx === -1) throw new Error('Instructor not found')
+  await updateRow('강사', idx, instructorToRow({ id, ...data }))
+}
+
+export async function deleteInstructor(id: string): Promise<void> {
+  checkSheetsConfig()
+  const idx = await findRowIndex('강사', id)
+  if (idx === -1) throw new Error('Instructor not found')
+  await deleteSheetRow('강사', idx)
 }
 
 // ── APPLICATIONS ──
