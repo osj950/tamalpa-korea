@@ -14,9 +14,7 @@ export default function TrainingPage() {
         {/* 페이지 헤더 */}
         <section style={{ background: 'var(--dark)', padding: '80px 60px' }}>
           <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-            <div className="section-eyebrow" style={{ color: 'var(--gold-light)' }}>
-              Education
-            </div>
+            <div className="section-eyebrow" style={{ color: 'var(--gold-light)' }}>Education</div>
             <h1 className="section-title" style={{ color: 'var(--gold-pale)' }}>
               트레이닝 <em>프로그램</em>
             </h1>
@@ -32,8 +30,8 @@ export default function TrainingPage() {
         </section>
 
         {/* Level 1 */}
-        <section style={{ background: 'white', padding: '100px 60px' }}>
-          <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+        <section style={{ background: 'white', padding: '80px 60px' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto' }} className="level-grid">
             <div>
               <div className="section-eyebrow">Level 1</div>
               <h2 className="section-title">개인 <em>구현</em></h2>
@@ -77,8 +75,8 @@ export default function TrainingPage() {
         </section>
 
         {/* Level 2 */}
-        <section style={{ background: 'var(--gold-very-pale)', padding: '100px 60px' }}>
-          <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+        <section style={{ background: 'var(--gold-very-pale)', padding: '80px 60px' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto' }} className="level-grid">
             <div className="about-card">
               <blockquote>
                 &ldquo;Level 2는 배운 것을 타인과 나누는 과정입니다.
@@ -122,8 +120,8 @@ export default function TrainingPage() {
         </section>
 
         {/* Level 3 */}
-        <section style={{ background: 'white', padding: '100px 60px' }}>
-          <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+        <section style={{ background: 'white', padding: '80px 60px' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto' }} className="level-grid">
             <div>
               <div className="section-eyebrow">Level 3</div>
               <h2 className="section-title">슈퍼비전 <em>&amp; 심화</em></h2>
