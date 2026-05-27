@@ -42,7 +42,7 @@ export default function About() {
         <div className="about-visual">
           <div className="about-card">
             <div className="about-card-logo">
-              <img src="/타말파로고.png" alt="" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+              <img src="/logo.png" alt="" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
             </div>
             <blockquote>
               &ldquo;우리는 몸 안에서, 몸을 통해 살아갑니다. 표현, 치유, 변화, 그리고 변환은 모두 구현의 행위입니다.&rdquo;

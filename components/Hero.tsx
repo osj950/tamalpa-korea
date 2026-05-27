@@ -23,7 +23,7 @@ export default function Hero() {
 
       <div className="hero-right">
         <div className="hero-logo-large">
-          <img src="/타말파로고.png" alt="Tamalpa Logo" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0' }} />
+          <img src="/logo.png" alt="Tamalpa Logo" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0' }} />
         </div>
         <div className="hero-quote">
           <p>&ldquo;The body contains and reveals our entire life experience.&rdquo;<br />— Anna Halprin</p>
