@@ -18,7 +18,7 @@ export default function FloatingButtons() {
         className="floating-btn floating-btn--hq"
       >
         <span className="floating-btn-icon">🌐</span>
-        <span className="floating-btn-label">미국 본사</span>
+        <span className="floating-btn-label">Tamalpa Institute</span>
       </a>
       <a href={contactHref} className="floating-btn floating-btn--contact">
         <span className="floating-btn-icon">✉</span>
