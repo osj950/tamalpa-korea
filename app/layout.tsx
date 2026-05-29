@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Noto_Serif_KR, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
+import FloatingButtons from '@/components/FloatingButtons'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -41,7 +42,10 @@ export default function RootLayout({
       lang="ko"
       className={`${cormorant.variable} ${notoSerifKR.variable} ${notoSansKR.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <FloatingButtons />
+      </body>
     </html>
   )
 }
